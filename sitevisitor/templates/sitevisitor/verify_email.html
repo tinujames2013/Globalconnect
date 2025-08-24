@@ -1,0 +1,83 @@
+{% extends 'sitevisitor/site_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Register - OTP Verification{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row vh-100">
+
+    <!-- Left side with image -->
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center"
+         style="background: linear-gradient(135deg, #7b2ff7, #f107a3);">
+      <img src="{% static 'images/signup-image.jpg' %}" alt="Sign Up"
+           class="img-fluid" style="max-height: 80vh; border-radius: 10px;">
+    </div>
+
+    <!-- Right side form -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center bg-white">
+      <div class="w-75 mx-auto">
+
+        {% if not show_otp %}
+          <h2 class="mb-4 fw-bold text-center">Sign Up</h2>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+                {{ field|add_class:"form-control" }}
+                {% if field.errors %}
+                  <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="terms" required>
+              <label class="form-check-label" for="terms">
+                I agree to the <a href="#" class="text-decoration-none">Terms of User</a>
+              </label>
+            </div>
+
+            <button type="submit" name="register_submit"
+                    class="btn btn-gradient w-100 py-2 fw-bold"
+                    style="background: linear-gradient(90deg, #7b2ff7, #f107a3); color: white; border: none;">
+              Register
+            </button>
+          </form>
+
+        {% else %}
+          <h2 class="mb-4 fw-bold text-center">Verify OTP</h2>
+          <p class="text-center">We sent an OTP to your email. Please enter it below.</p>
+          <form method="post">
+            {% csrf_token %}
+            {{ otp_form.as_p }}
+            <input type="hidden" name="user_id" value="{{ user_id }}">
+            <button type="submit" name="otp_submit"
+                    class="btn btn-success w-100 py-2 fw-bold">
+              Verify OTP
+            </button>
+          </form>
+        {% endif %}
+
+        {% if messages %}
+          <div class="mt-3">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <p class="text-center mt-4">
+          Already have an account?
+          <a href="{% url 'sitevisitor:login' %}" class="text-decoration-none">Sign in →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% endblock %}

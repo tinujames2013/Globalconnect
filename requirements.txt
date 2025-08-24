@@ -1,0 +1,15 @@
+Django==5.0.6
+mysqlclient==2.2.4          # MySQL database connector
+djangorestframework==3.15.1 # REST API
+django-filter==24.2         # Filtering support for DRF
+django-redis==5.4.0         # Caching with Redis
+celery==5.4.0               # Task queue
+redis==5.0.7                # Redis client (broker + cache backend)
+django-cors-headers==4.4.0  # For handling CORS in APIs
+python-decouple==3.8        # Environment variable management
+Pillow==10.4.0              # Image handling (for profile photos/resumes)
+reportlab==4.2.5            # PDF generation for resumes/applications
+django-crispy-forms==2.3    # Better forms
+crispy-bootstrap5==2024.2   # Bootstrap 5 support for crispy-forms
+gunicorn==23.0.0            # For deployment (if using Linux server)
+whitenoise==6.7.0           # Serving static files in production

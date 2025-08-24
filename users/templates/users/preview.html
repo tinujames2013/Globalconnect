@@ -1,0 +1,36 @@
+{% extends 'users/users_base.html' %}
+
+
+{% block title %}Resume Preview{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="text-primary fw-bold">👀 Resume Preview</h2>
+        <p class="text-muted">Review your resume before editing or downloading</p>
+    </div>
+
+    <div class="text-center mb-4">
+        <h5 class="mb-3">Switch Template</h5>
+        <div class="btn-group flex-wrap">
+            <a href="{% url 'users:change_template' resume.pk 'classic' %}" class="btn btn-outline-primary btn-sm">Classic</a>
+            <a href="{% url 'users:change_template' resume.pk 'sidebar' %}" class="btn btn-outline-primary btn-sm">Sidebar</a>
+            <a href="{% url 'users:change_template' resume.pk 'modern' %}" class="btn btn-outline-primary btn-sm">Modern</a>
+            <a href="{% url 'users:change_template' resume.pk 'elegant' %}" class="btn btn-outline-primary btn-sm">Elegant</a>
+            <a href="{% url 'users:change_template' resume.pk 'professional' %}" class="btn btn-outline-primary btn-sm">Professional</a>
+            <a href="{% url 'users:change_template' resume.pk 'creative' %}" class="btn btn-outline-primary btn-sm">Creative</a>
+        </div>
+    </div>
+
+    <!-- Only the resume body will be included here -->
+    <div class="resume-preview border shadow-sm bg-white rounded p-4 mb-4">
+        {% include tpl %}
+    </div>
+
+    <div class="text-center">
+        <a href="{% url 'users:list' %}" class="btn btn-outline-secondary me-2">⬅️ Back to List</a>
+        <a href="{% url 'users:edit' resume.pk %}" class="btn btn-outline-warning me-2">✏️ Edit</a>
+        <a href="{% url 'users:pdf' resume.pk %}" class="btn btn-outline-success">⬇️ Download PDF</a>
+    </div>
+</div>
+{% endblock %}

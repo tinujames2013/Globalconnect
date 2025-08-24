@@ -1,0 +1,95 @@
+{% extends "users/users_base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Job Listings Section -->
+<section class="job-listings py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Available Job Listings</h2>
+            <a href="{% url 'payments:upgrade' %}" class="btn btn-gradient shadow-sm px-4 py-2">
+                🌟 Upgrade to Premium
+            </a>
+        </div>
+
+        <div class="row">
+            {% for job in jobs %}
+                <div class="col-md-12 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="row g-0">
+                            <!-- Job Image -->
+                            <div class="col-md-2 d-flex align-items-center justify-content-center bg-light">
+                                {% if job.featured_image %}
+                                    <img src="{{ job.featured_image.url }}" 
+                                         class="img-fluid rounded-circle" 
+                                         alt="Job Image" 
+                                         style="width: 80px; height: 80px; object-fit: cover;">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/80" 
+                                         class="img-fluid rounded-circle" 
+                                         alt="Placeholder" 
+                                         style="width: 80px; height: 80px; object-fit: cover;">
+                                {% endif %}
+                            </div>
+
+                            <!-- Job Details -->
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ job.job_title }}</h5>
+                                    <p class="card-text text-secondary small">
+                                        {{ job.job_description|truncatewords:20 }}
+                                    </p>
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <p class="card-text mb-1"><strong>Location:</strong> {{ job.job_location }}</p>
+                                        <p class="card-text mb-1"><strong>Type:</strong> {{ job.job_type }}</p>
+                                        <p class="card-text mb-1"><strong>Salary:</strong> {{ job.salary|default:"Not Disclosed" }}</p>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div class="d-flex justify-content-end mt-3">
+                                        {% if IS_PREMIUM %}
+                                            <!-- Premium can browse & apply to all -->
+                                            <a href="{% url 'users:job_detail' job.id %}" class="btn btn-outline-primary btn-sm me-2">Browse Job</a>
+                                            <a href="{% url 'users:apply_for_job' job.id %}" class="btn btn-success btn-sm">Apply Now</a>
+                                        {% else %}
+                                            {% if job.job_type in FREE_VISIBLE_TYPES %}
+                                                <!-- Free users can only access free jobs -->
+                                                <a href="{% url 'users:job_detail' job.id %}" class="btn btn-outline-primary btn-sm me-2">Browse Job</a>
+                                                <a href="{% url 'users:apply_for_job' job.id %}" class="btn btn-success btn-sm">Apply Now</a>
+                                            {% else %}
+                                                <!-- Blocked for free users -->
+                                                <a href="{% url 'payments:upgrade' %}" class="btn btn-warning btn-sm">🌟 Upgrade to Access</a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center text-muted">No jobs available right now.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        color: #fff;
+        border: none;
+        font-weight: 600;
+        transition: 0.3s ease-in-out;
+    }
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #feb47b, #ff7e5f);
+        transform: scale(1.05);
+        color: #fff;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'users/users_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">
+            <i class="fas fa-file-alt"></i> My Resumes
+        </h2>
+        <a href="{% url 'users:create' %}" class="btn btn-gradient btn-lg shadow-sm">
+            <i class="fas fa-plus-circle"></i> Create Resume
+        </a>
+    </div>
+
+    {% if object_list %}
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="table-responsive">
+            <table class="table align-middle table-hover mb-0">
+                <thead class="bg-primary text-white rounded-top">
+                    <tr>
+                        <th><i class="fas fa-heading"></i> Title</th>
+                        <th><i class="fas fa-paint-brush"></i> Template</th>
+                        <th><i class="fas fa-clock"></i> Last Updated</th>
+                        <th class="text-center"><i class="fas fa-cogs"></i> Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resume in object_list %}
+                    <tr class="resume-row">
+                        <td>
+                            <span class="fw-bold text-dark">{{ resume.title }}</span>
+                        </td>
+                        <td>
+                            {% if resume.template_key %}
+                                <span class="badge bg-gradient bg-info text-dark px-3 py-2 rounded-pill shadow-sm">
+                                    {{ resume.get_template_key_display }}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary px-3 py-2 rounded-pill">No template</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="text-muted small">
+                                {{ resume.updated_at|date:"M d, Y H:i" }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'users:edit' resume.pk %}" class="btn btn-warning btn-sm shadow-sm rounded-pill">
+                                    ✏️ Edit
+                                </a>
+                                <a href="{% url 'users:preview' resume.pk %}" class="btn btn-info btn-sm shadow-sm rounded-pill text-white">
+                                    👀 Preview
+                                </a>
+                                <a href="{% url 'users:pdf' resume.pk %}" class="btn btn-success btn-sm shadow-sm rounded-pill">
+                                    ⬇️ PDF
+                                </a>
+                                <a href="{% url 'users:delete' resume.pk %}" class="btn btn-danger btn-sm shadow-sm rounded-pill">
+                                    🗑️ Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-info shadow-sm text-center rounded-3 py-4">
+            <i class="fas fa-info-circle"></i> You have no resumes yet.  
+            <br><strong>Start by creating one!</strong>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(45deg, #007bff, #00c6ff);
+        color: white !important;
+        border: none;
+    }
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #0056b3, #0099cc);
+        color: #fff;
+    }
+    .resume-row:hover {
+        background: #f9fcff;
+        transition: 0.2s ease-in-out;
+    }
+    .card {
+        border-radius: 1rem !important;
+    }
+</style>
+{% endblock %}

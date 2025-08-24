@@ -1,0 +1,29 @@
+{% extends "payments/base.html" %}
+{% block content %}
+<div class="container py-5 text-center">
+  <h2>Upgrade to Premium (₹500/year)</h2>
+  <p>Unlock full job details and apply to Part-time & Full-time jobs.</p>
+
+  <form action="{% url 'payments:verify' %}" method="POST">
+    {% csrf_token %}
+    <script
+      src="https://checkout.razorpay.com/v1/checkout.js"
+      data-key="{{ key_id }}"
+      data-amount="{{ amount }}"
+      data-currency="{{ currency }}"
+      data-order_id="{{ order_id }}"
+      data-buttontext="Pay ₹500"
+      data-name="JobBoard Premium"
+      data-description="Annual Premium Membership"
+      data-prefill.name="{{ user_name }}"
+      data-prefill.email="{{ user_email }}"
+      data-theme.color="#3399cc">
+    </script>
+    <input type="hidden" name="hidden">
+  </form>
+
+  <p class="mt-3 text-muted">
+    You can pay via <strong>UPI (Google Pay, PhonePe, Paytm, BHIM)</strong>, Debit/Credit Card, Netbanking, or Wallet.
+  </p>
+</div>
+{% endblock %}

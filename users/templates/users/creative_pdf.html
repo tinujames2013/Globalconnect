@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fff;
+            font-size: 12pt;
+            line-height: 1.6;
+        }
+        .resume-container {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        /* Sidebar */
+        .sidebar {
+            width: 30%;
+            background: #f4f6f9;
+            padding: 25px;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar h3 {
+            border-bottom: 2px solid #00c6ff;
+            padding-bottom: 5px;
+            color: #1f3a56;
+            margin-top: 20px;
+            font-size: 14pt;
+        }
+        .sidebar img {
+            width: 100%;
+            border-radius: 20% 50% 20% 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .sidebar ul {
+            padding-left: 18px;
+        }
+        /* Main section */
+        .main {
+            width: 70%;
+            padding: 30px;
+        }
+        .main h1 {
+            color: #1f3a56;
+            margin: 0;
+            font-size: 22pt;
+        }
+        .main h2 {
+            color: #1f3a56;
+            margin-top: 25px;
+            font-size: 16pt;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .main h4 {
+            color: gray;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+        ul {
+            padding-left: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            {% if resume.photo %}
+                <img src="{{ resume.photo.url }}">
+            {% endif %}
+
+            <h3>Contact</h3>
+            <p>📞 {{ resume.phone }}</p>
+            <p>✉️ {{ resume.email }}</p>
+            {% if resume.location %}<p>📍 {{ resume.location }}</p>{% endif %}
+            {% if resume.website %}<p>🌐 {{ resume.website }}</p>{% endif %}
+            {% if resume.linkedin %}<p>🔗 {{ resume.linkedin }}</p>{% endif %}
+            {% if resume.github %}<p>💻 {{ resume.github }}</p>{% endif %}
+
+            {% if skills %}
+            <h3>Skills</h3>
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if languages %}
+            <h3>Languages</h3>
+            <ul>
+                {% for lang in languages %}
+                    <li>{{ lang }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <!-- Main -->
+        <div class="main">
+            <h1>{{ resume.full_name }}</h1>
+            <h4>{{ resume.headline }}</h4>
+
+            {% if resume.summary %}
+                <h2>Profile</h2>
+                <p>{{ resume.summary }}</p>
+            {% endif %}
+
+            {% if experiences %}
+                <h2>Experience</h2>
+                <ul>
+                    {% for exp in experiences %}
+                        <li>{{ exp }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if resume.school or resume.college or educations %}
+                <h2>Education</h2>
+                {% if resume.school %}<p><strong>School:</strong> {{ resume.school }}</p>{% endif %}
+                {% if resume.college %}<p><strong>College:</strong> {{ resume.college }}</p>{% endif %}
+                {% if educations %}
+                    <ul>
+                        {% for edu in educations %}
+                            <li>{{ edu }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+
+            {% if awards %}
+                <h2>Awards</h2>
+                <ul>
+                    {% for award in awards %}
+                        <li>{{ award }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if projects %}
+                <h2>Projects</h2>
+                <ul>
+                    {% for project in projects %}
+                        <li>{{ project }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

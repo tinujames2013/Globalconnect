@@ -1,0 +1,39 @@
+{% extends "payments/base.html" %}
+{% block title %}Transactions | JobBoard{% endblock %}
+{% block content %}
+<div class="py-5">
+    <h2>Your Transactions</h2>
+    {% if payments %}
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for p in payments %}
+                <tr>
+                    <td>{{ p.order_id }}</td>
+                    <td>₹{{ p.amount|divisibleby:100 }}</td>
+                    <td>
+                        {% if p.status == "paid" %}
+                            <span class="badge bg-success">Paid</span>
+                        {% elif p.status == "failed" %}
+                            <span class="badge bg-danger">Failed</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ p.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ p.created_at|date:"M d, Y H:i" }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No transactions yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

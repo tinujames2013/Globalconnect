@@ -1,0 +1,106 @@
+{% extends 'users/users_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <!-- Card -->
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                
+                <!-- Header -->
+                <div class="card-header text-white py-4"
+                     style="background: linear-gradient(90deg, #0f9b0f, #00c6ff);">
+                    <h4 class="mb-0 fw-bold text-center">
+                        {% if is_create %}
+                            ✍️ Create Your Resume
+                        {% else %}
+                            ✏️ Edit Resume: {{ resume.title }}
+                        {% endif %}
+                    </h4>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-5">
+                    <form method="post" enctype="multipart/form-data" class="row g-4 needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Form Fields -->
+                        <div class="form-section">
+                            {{ form.as_p }}
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <a href="{% url 'users:list' %}" 
+                               class="btn btn-outline-dark px-4 py-2 rounded-pill shadow-sm fw-semibold">
+                                ⬅ Back
+                            </a>
+                            <button type="submit" 
+                                    class="btn btn-gradient px-5 py-2 rounded-pill shadow-sm fw-bold text-white">
+                                {% if is_create %}
+                                    💾 Save Resume
+                                {% else %}
+                                    💾 Update Resume
+                                {% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer text-muted text-center small py-3"
+                     style="background: #f8f9fa;">
+                    🔒 Your information is secure and private
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    /* Gradient Button */
+    .btn-gradient {
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        border: none;
+        transition: all 0.3s ease-in-out;
+    }
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #dd2476, #ff512f);
+        transform: translateY(-2px);
+    }
+
+    /* Inputs Styling */
+    .form-section p {
+        margin-bottom: 1.2rem !important;
+    }
+    .form-section label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.3rem;
+        display: block;
+    }
+    .form-section input, 
+    .form-section textarea, 
+    .form-section select {
+        border-radius: 10px !important;
+        border: 1px solid #ccc !important;
+        padding: 10px 14px !important;
+        width: 100% !important;
+        transition: all 0.3s ease-in-out;
+    }
+    .form-section input:focus, 
+    .form-section textarea:focus, 
+    .form-section select:focus {
+        border-color: #00c6ff !important;
+        box-shadow: 0 0 6px rgba(0, 198, 255, 0.5) !important;
+    }
+
+    /* Headings */
+    h4 {
+        letter-spacing: 0.5px;
+    }
+</style>
+{% endblock %}

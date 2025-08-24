@@ -1,0 +1,9 @@
+{% extends "payments/base.html" %}
+{% block title %}Payment Failed | JobBoard{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h2 class="text-danger">❌ Payment Failed</h2>
+    <p class="lead">We could not verify your payment. Please try again.</p>
+    <a href="{% url 'payments:start_payment' %}" class="btn btn-warning mt-3">Retry Payment</a>
+</div>
+{% endblock %}

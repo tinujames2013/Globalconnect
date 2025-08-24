@@ -1,0 +1,29 @@
+{% extends "payments/base.html" %}
+{% block title %}Plans | JobBoard{% endblock %}
+{% block content %}
+<div class="py-5 text-center">
+    <h2>Choose Your Plan</h2>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Free</h4>
+                    <p>Basic job browsing</p>
+                    <p class="fw-bold">₹0</p>
+                    <button class="btn btn-secondary" disabled>Current Plan</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-primary">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Premium</h4>
+                    <p>Unlimited job applications & full job details</p>
+                    <p class="fw-bold">₹500 / year</p>
+                    <a href="{% url 'payments:upgrade' %}" class="btn btn-primary">Upgrade</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

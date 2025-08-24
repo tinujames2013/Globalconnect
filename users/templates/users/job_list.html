@@ -1,0 +1,77 @@
+{% extends 'users/users_base.html' %}
+{% load static %}
+
+{% block title %}Job Listings{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Available Jobs</h1>
+        <a href="{% url 'payments:upgrade' %}" class="btn btn-outline-primary">
+            {% if IS_PREMIUM %}Premium Active{% else %}Upgrade to Premium{% endif %}
+        </a>
+    </div>
+
+    <!-- Table to display jobs -->
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Job Title</th>
+                <th scope="col">Company</th>
+                <th scope="col">Location</th>
+                <th scope="col">Job Type</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            {% if job.featured_image %}
+                                <img src="{{ job.featured_image.url }}" class="img-fluid rounded-circle" alt="Job Image" style="width: 50px; height: 50px; margin-right: 10px;">
+                            {% else %}
+                                <img src="https://via.placeholder.com/50" class="img-fluid rounded-circle" alt="Placeholder" style="width: 50px; height: 50px; margin-right: 10px;">
+                            {% endif %}
+                            {{ job.job_title }}
+                        </div>
+                    </td>
+                    <td>
+                        {% if job.job_type in FREE_VISIBLE_TYPES or IS_PREMIUM %}
+                            {{ job.company_name }}
+                        {% else %}
+                            <span class="text-muted">Upgrade to view</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ job.job_location }}</td>
+                    <td>{{ job.job_type }}</td>
+                    <td>
+                        {% if job.job_type in FREE_VISIBLE_TYPES or IS_PREMIUM %}
+                            {{ job.salary|default:"N/A" }}
+                        {% else %}
+                            <span class="text-muted">Upgrade to view</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'users:job_detail' job.id %}" class="btn btn-info btn-sm">View Details</a>
+                        {% if user.is_authenticated %}
+                            {% if job.job_type in FREE_VISIBLE_TYPES or IS_PREMIUM %}
+                                <a href="{% url 'users:apply_for_job' job.id %}" class="btn btn-primary btn-sm">Apply Now</a>
+                            {% else %}
+                                <a href="{% url 'payments:upgrade' %}" class="btn btn-warning btn-sm">Upgrade to Apply</a>
+                            {% endif %}
+                        {% else %}
+                            <a href="{% url 'users:login' %}" class="btn btn-warning btn-sm">Login to Apply</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No jobs available at the moment.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

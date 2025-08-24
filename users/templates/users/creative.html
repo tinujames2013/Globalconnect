@@ -1,0 +1,76 @@
+{% extends 'users/users_base.html' %}
+{% block content %}
+<div style="max-width: 850px; margin: auto; font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; background: #ffffff; box-shadow: 0 5px 25px rgba(0,0,0,0.1); border-radius: 15px; overflow: hidden;">
+
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #2c3e50, #3498db); color: white; text-align: center; padding: 50px 20px;">
+        {% if resume.photo %}
+            <img src="{{ resume.photo.url }}" alt="{{ resume.full_name }}" 
+                 style="width: 130px; height: 130px; border-radius: 50%; border: 5px solid #fff; margin-bottom: 20px; object-fit: cover;">
+        {% endif %}
+        <h1 style="margin: 0; font-size: 34px; font-weight: bold; letter-spacing: 1px;">{{ resume.full_name }}</h1>
+        <h3 style="margin: 8px 0 15px; font-weight: 400; color: #ecf0f1;">{{ resume.headline }}</h3>
+        <p style="font-size: 15px; margin: 0;">
+            📞 {{ resume.phone }} &nbsp;|&nbsp; ✉️ {{ resume.email }}
+            {% if resume.location %} &nbsp;|&nbsp; 📍 {{ resume.location }}{% endif %}
+            {% if resume.website %} &nbsp;|&nbsp; 🌐 <a href="{{ resume.website }}" target="_blank" style="color:#f1c40f; text-decoration:none;">{{ resume.website }}</a>{% endif %}
+        </p>
+    </div>
+
+    <div style="padding: 40px 50px;">
+
+        <!-- Profile -->
+        {% if resume.summary %}
+        <div style="margin-bottom: 35px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; display: inline-block; padding-bottom: 6px;">About Me</h2>
+            <p style="margin-top: 12px; color: #444; font-size: 15px;">{{ resume.summary }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Experience -->
+        {% if resume.experiences %}
+        <div style="margin-bottom: 35px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; display: inline-block; padding-bottom: 6px;">Experience</h2>
+            <p style="margin-top: 12px; white-space: pre-line; color: #444; font-size: 15px;">{{ resume.experiences }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Education -->
+        {% if resume.school or resume.college or resume.educations %}
+        <div style="margin-bottom: 35px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; display: inline-block; padding-bottom: 6px;">Education</h2>
+            {% if resume.school %}<p><strong>School:</strong> {{ resume.school }}</p>{% endif %}
+            {% if resume.college %}<p><strong>College:</strong> {{ resume.college }}</p>{% endif %}
+            <p style="margin-top: 12px; white-space: pre-line; color: #444;">{{ resume.educations }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Skills -->
+     
+        {% if skills %}
+<h3 style="margin-top: 20px; border-bottom: 1px solid #fff; padding-bottom: 5px;">Skills</h3>
+<ul>
+    {% for skill in skills %}
+        <li>{{ skill }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+        <!-- Languages -->
+        {% if resume.languages %}
+        <div style="margin-bottom: 35px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; display: inline-block; padding-bottom: 6px;">Languages</h2>
+            <p style="margin-top: 12px; color: #444;">{{ resume.languages }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Awards -->
+        {% if resume.awards %}
+        <div style="margin-bottom: 20px;">
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; display: inline-block; padding-bottom: 6px;">Awards</h2>
+            <p style="margin-top: 12px; white-space: pre-line; color: #444;">{{ resume.awards }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

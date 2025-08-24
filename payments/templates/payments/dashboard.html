@@ -1,0 +1,13 @@
+{% extends "payments/base.html" %}
+{% block title %}Payments Dashboard | JobBoard{% endblock %}
+{% block content %}
+<div class="py-5">
+    <h2>Payments Dashboard</h2>
+    <p>Welcome, {{ request.user.username }} 👋</p>
+    <ul>
+        <li><a href="{% url 'payments:transactions' %}">View Transactions</a></li>
+        <li><a href="{% url 'payments:plans' %}">See Premium Plans</a></li>
+        <li><a href="{% url 'payments:start_payment' %}">Upgrade to Premium</a></li>
+    </ul>
+</div>
+{% endblock %}

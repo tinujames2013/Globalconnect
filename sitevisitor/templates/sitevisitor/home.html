@@ -1,0 +1,84 @@
+{% extends 'sitevisitor/site_base.html' %}
+{% load static %}
+
+{% block title %}Home - Site Visitor{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="py-5 text-center bg-light">
+  <div class="container">
+
+    <p class="lead text-muted">
+      Your gateway to exciting opportunities and top global talent.  
+      Whether you're seeking your dream job or the perfect candidate — we've got you covered.
+    </p>
+    <a href="{% url 'sitevisitor:login' %}" class="btn btn-primary btn-lg mt-3">
+      Get Started
+    </a>
+  </div>
+</section>
+
+<!-- Latest Jobs Section -->
+<div class="container mt-5">
+  <h3 class="fw-bold mb-3 text-center">Check Latest Jobs</h3>
+  <h5 class="mb-4 text-center text-muted">Discover your next career move</h5>
+
+  <div class="row">
+    {% for job in jobs %}
+      <div class="col-md-12 mb-4">
+        <div class="card shadow-sm border-0">
+          <div class="row g-0">
+            <!-- Job Details -->
+            <div class="col-12">
+              <div class="card-body">
+                <h5 class="card-title text-primary">{{ job.job_title }}</h5>
+                <p class="card-text text-secondary small">
+                  {{ job.job_description|truncatewords:25 }}
+                </p>
+                <div class="d-flex flex-wrap justify-content-between">
+                  <p class="card-text mb-1">
+                    <i class="bi bi-geo-alt-fill text-success"></i> 
+                    <strong>Location:</strong> {{ job.job_location }}
+                  </p>
+                  <p class="card-text mb-1">
+                    <i class="bi bi-briefcase-fill text-info"></i> 
+                    <strong>Type:</strong> {{ job.job_type }}
+                  </p>
+                  <p class="card-text mb-1">
+                    <i class="bi bi-currency-dollar text-warning"></i> 
+                    <strong>Salary:</strong> {{ job.salary|default:"Not Disclosed" }}
+                  </p>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                  <a href="{% url 'sitevisitor:login' %}" class="btn btn-primary btn-sm">
+                    Login to View
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <p class="text-center text-muted">No jobs available at the moment. Check back later!</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Call to Action -->
+<section class="py-5 text-center bg-primary text-white mt-5">
+  <div class="container">
+    <h2 class="fw-bold">Ready to Take the Next Step?</h2>
+    <p class="mb-4">
+      Sign up today to unlock premium opportunities and connect with top employers worldwide.
+    </p>
+    <a href="{% url 'sitevisitor:register' %}" class="btn btn-light btn-lg">
+      Register Now
+    </a>
+  </div>
+</section>
+
+{% endblock %}

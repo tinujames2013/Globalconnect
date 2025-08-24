@@ -1,0 +1,28 @@
+{% extends 'users/users_base.html' %}
+{% load static %}
+<div class="card mb-3">
+  <div class="card-header">{{ title }}</div>
+  <div class="card-body">
+    {{ formset.management_form }}
+    <table class="table table-sm align-middle">
+      <thead><tr>
+        {% for f in formset.empty_form.visible_fields %}
+          {% if f.name != 'order' %}
+            <th>{{ f.label }}</th>
+          {% endif %}
+        {% endfor %}
+        <th>Order</th><th>Delete?</th>
+      </tr></thead>
+      <tbody>
+      {% for form in formset.forms %}
+        <tr>
+          {% for field in form.visible_fields %}
+            <td style="min-width:200px">{{ field }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="text-muted small">Add more rows by increasing TOTAL FORMS hidden field (or customize with JS later).</p>
+  </div>
+</div>

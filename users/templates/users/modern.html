@@ -1,0 +1,87 @@
+{% extends 'users/users_base.html' %}
+{% block content %}
+<div style="max-width: 900px; margin: auto; font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.6; border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden;">
+
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #2d89ef, #00c6ff); color: white; padding: 40px; text-align: center;">
+        {% if resume.photo %}
+            <img src="{{ resume.photo.url }}" style="width:120px; height:120px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; margin-bottom: 15px;">
+        {% endif %}
+        <h1 style="margin: 0; font-size: 32px;">{{ resume.full_name }}</h1>
+        <h3 style="margin: 5px 0; font-weight: normal; opacity: 0.9;">{{ resume.headline }}</h3>
+        <p style="margin-top: 10px;">
+            📞 {{ resume.phone }} | ✉️ {{ resume.email }}
+            {% if resume.location %}| 📍 {{ resume.location }}{% endif %}
+            {% if resume.website %}| 🌐 {{ resume.website }}{% endif %}
+            {% if resume.linkedin %}| 🔗 {{ resume.linkedin }}{% endif %}
+            {% if resume.github %}| 💻 {{ resume.github }}{% endif %}
+        </p>
+    </div>
+
+    <!-- Body -->
+    <div style="display: flex;">
+
+        <!-- Left Column -->
+        <div style="width: 35%; background: #f7f9fc; padding: 25px; border-right: 1px solid #ddd;">
+
+            {% if skills %}
+            <h3 style="color: #2d89ef; border-bottom: 2px solid #2d89ef; padding-bottom: 5px;">Skills</h3>
+            <ul style="padding-left: 18px;">
+                {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if languages %}
+            <h3 style="color: #2d89ef; border-bottom: 2px solid #2d89ef; padding-bottom: 5px;">Languages</h3>
+            <ul style="padding-left: 18px;">
+                {% for lang in languages %}
+                    <li>{{ lang }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if awards %}
+            <h3 style="color: #2d89ef; border-bottom: 2px solid #2d89ef; padding-bottom: 5px;">Awards</h3>
+            <ul style="padding-left: 18px;">
+                {% for award in awards %}
+                    <li>{{ award }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <!-- Right Column -->
+        <div style="width: 65%; padding: 30px;">
+
+            {% if resume.summary %}
+            <h3 style="color: #2d89ef; margin-bottom: 10px;">Profile</h3>
+            <p>{{ resume.summary }}</p>
+            {% endif %}
+
+            {% if experiences %}
+            <h3 style="color: #2d89ef; margin-top: 25px;">Experience</h3>
+            <ul style="padding-left: 18px;">
+                {% for exp in experiences %}
+                    <li>{{ exp }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if resume.school or resume.college or educations %}
+            <h3 style="color: #2d89ef; margin-top: 25px;">Education</h3>
+            {% if resume.school %}<p><strong>School:</strong> {{ resume.school }}</p>{% endif %}
+            {% if resume.college %}<p><strong>College:</strong> {{ resume.college }}</p>{% endif %}
+            {% if educations %}
+                <ul style="padding-left: 18px;">
+                    {% for edu in educations %}
+                        <li>{{ edu }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

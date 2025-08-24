@@ -1,0 +1,56 @@
+{% extends 'users/users_base.html' %}
+{% load static %}
+
+{% block title %}{{ job.job_title }} | Job Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>{{ job.job_title }}</h1>
+        {% if requires_upgrade %}
+            <a href="{% url 'payments:upgrade' %}" class="btn btn-warning">Upgrade to view details</a>
+        {% endif %}
+    </div>
+
+    <div class="text-muted">
+        {{ job.job_location }} • {{ job.job_type }} • {{ job.job_region }}
+    </div>
+
+    {% if limited_view %}
+        <div class="alert alert-info mt-3">
+            This is a premium listing ({{ job.job_type }}). Upgrade to see company details and full description.
+        </div>
+        <p><strong>Summary:</strong> Limited preview available.</p>
+    {% else %}
+        <div class="mt-3">
+            <h5>Company</h5>
+            <p>{{ job.company_name }}</p>
+            {% if job.company_website %}
+                <p><a href="{{ job.company_website }}" target="_blank" rel="noopener">Visit Website</a></p>
+            {% endif %}
+
+            <h5>Description</h5>
+            <p style="white-space: pre-line">{{ job.job_description }}</p>
+
+            <h5>Qualifications</h5>
+            <p style="white-space: pre-line">{{ job.qualifications }}</p>
+
+            {% if job.salary %}
+                <p><strong>Salary:</strong> ₹{{ job.salary }}</p>
+            {% endif %}
+        </div>
+
+        <div class="mt-3">
+            {% if user.is_authenticated %}
+                {% if job.job_type in FREE_VISIBLE_TYPES or is_premium %}
+                    <a href="{% url 'users:apply_for_job' job.id %}" class="btn btn-danger btn-sm">Apply Now</a>
+                {% else %}
+                    <a href="{% url 'payments:upgrade' %}" class="btn btn-warning">Upgrade to Apply</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Login to Apply</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

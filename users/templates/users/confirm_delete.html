@@ -1,0 +1,25 @@
+{% extends 'users/users_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4>⚠️ Confirm Delete</h4>
+        </div>
+        <div class="card-body">
+            <p>
+                Are you sure you want to delete the resume 
+                <strong>"{{ resume.title }}"</strong>?
+            </p>
+            <p class="text-muted">This action cannot be undone.</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">🗑️ Yes, Delete</button>
+                <a href="{% url 'users:list' %}" class="btn btn-secondary">❌ Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
