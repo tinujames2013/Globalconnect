@@ -24,9 +24,9 @@ os.environ["G_MESSAGES_DEBUG"] = "none"
 SECRET_KEY = 'django-insecure-4tor1ob%okkb62uhw*v+0s1w9tlya0%ge7aant&z479g^uh5e*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://www.globalconnect.com.in', '127.0.0.1:8000','127.0.0.1' ]
+ALLOWED_HOSTS = ['globalconnect.com.in', 'www.globalconnect.com.in', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -146,12 +146,13 @@ AUTH_USER_MODEL = "adminpanel.CustomUser"
 
 # settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'tinujaimes2013@gmail.com'
-EMAIL_HOST_PASSWORD = 'lhlmbvcpsuenpsgv'  # app password with no spaces
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST = 'smtp.hostinger.com'
+EMAIL_PORT = 587           # TLS port
+EMAIL_USE_TLS = True       # Use TLS for encryption
+EMAIL_HOST_USER = 'admin@globalconnect.com.in'
+EMAIL_HOST_PASSWORD = 'Adminglobal123_'  # The password you set for this mailbox
+DEFAULT_FROM_EMAIL = 'Global Connect <admin@globalconnect.com.in>'
+
 
 
 # Razorpay test keys
@@ -163,3 +164,4 @@ RAZORPAY_KEY_SECRET = "sAWCvNGpuTW7dZUzlkhubK05"
 TEMPLATES[0]["OPTIONS"]["context_processors"] += [
     "users.context_processors.premium_status",  # we'll add this below
 ]
+

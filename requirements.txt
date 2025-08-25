@@ -13,3 +13,6 @@ django-crispy-forms==2.3    # Better forms
 crispy-bootstrap5==2024.2   # Bootstrap 5 support for crispy-forms
 gunicorn==23.0.0            # For deployment (if using Linux server)
 whitenoise==6.7.0           # Serving static files in production
+pip freeze > requirements.txt
+pip install razorpay
+
