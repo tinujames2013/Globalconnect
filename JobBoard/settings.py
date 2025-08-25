@@ -25,8 +25,15 @@ SECRET_KEY = 'django-insecure-4tor1ob%okkb62uhw*v+0s1w9tlya0%ge7aant&z479g^uh5e*
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = [
+    'globalconnect.co.in',
+    'www.globalconnect.co.in',
+    '127.0.0.1',
+    'localhost',
+    '153.92.222.97'
+]
 
-ALLOWED_HOSTS = ['globalconnect.com.in', 'www.globalconnect.com.in', '127.0.0.1', 'localhost']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Application definition
