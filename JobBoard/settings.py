@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 os.environ["G_MESSAGES_DEBUG"] = "none"
@@ -25,13 +25,8 @@ SECRET_KEY = 'django-insecure-4tor1ob%okkb62uhw*v+0s1w9tlya0%ge7aant&z479g^uh5e*
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = [
-    'globalconnect.com.in',
-    'www.globalconnect.com.in',
-    '127.0.0.1',
-    'localhost',
-    '153.92.222.97'
-]
+ALLOWED_HOSTS = ["joweb.in", "www.joweb.in", "31.97.186.179", "127.0.0.1:8000", "127.0.0.1"]
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -162,6 +157,7 @@ DEFAULT_FROM_EMAIL = 'Global Connect <admin@globalconnect.com.in>'
 
 
 
+
 # Razorpay test keys
 RAZORPAY_KEY_ID = "rzp_live_R97dkVXJos0oFB"
 RAZORPAY_KEY_SECRET = "sAWCvNGpuTW7dZUzlkhubK05"
@@ -172,3 +168,6 @@ TEMPLATES[0]["OPTIONS"]["context_processors"] += [
     "users.context_processors.premium_status",  # we'll add this below
 ]
 
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
