@@ -147,13 +147,15 @@ AUTH_USER_MODEL = "adminpanel.CustomUser"
 
 
 # settings.py
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.hostinger.com'
-EMAIL_PORT = 587           # TLS port
-EMAIL_USE_TLS = True       # Use TLS for encryption
-EMAIL_HOST_USER = 'admin@globalconnect.com.in'
-EMAIL_HOST_PASSWORD = 'Adminglobal123_'  # The password you set for this mailbox
-DEFAULT_FROM_EMAIL = 'Global Connect <admin@globalconnect.com.in>'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # from env
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # from env
+DEFAULT_FROM_EMAIL = 'Global Connect <admin@joweb.in>'
+
 
 
 
