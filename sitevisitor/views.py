@@ -6,10 +6,18 @@ from django.conf import settings
 import random
 from .forms import CustomUserRegistrationForm, ProfileForm
 from adminpanel.models import CustomUser, EmailOTP, Job, Profile
+from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
 
 def home(request):
     jobs = Job.objects.all()
-    return render(request, 'sitevisitor/home.html', {'jobs': jobs})
+    context = {
+        'jobs': jobs,
+        'meta_title': "Global Connect - Find jobs & recruiters",
+        'meta_description': "Find your dream job or connect with top recruiters. Create CVs, apply & track."
+    }
+    return render(request, 'sitevisitor/home.html', context)
+
 
 
 def login_view(request):

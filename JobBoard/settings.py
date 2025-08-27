@@ -48,7 +48,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'payments',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
+
+SITE_ID = 1
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 

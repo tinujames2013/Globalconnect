@@ -1,5 +1,5 @@
 Django==5.0.6
-PyMySQL==1.1.1            # Pure Python, no system deps
+PyMySQL==1.1.1
 djangorestframework==3.15.1
 django-filter==24.2
 django-redis==5.4.0
@@ -9,6 +9,7 @@ django-cors-headers==4.4.0
 python-decouple==3.8
 Pillow==10.4.0
 reportlab==4.2.5
+weasyprint==62.3
 django-crispy-forms==2.3
 crispy-bootstrap5==2024.2
 gunicorn==23.0.0
@@ -16,3 +17,10 @@ whitenoise==6.7.0
 razorpay==1.4.2
 django-widget-tweaks==1.5.0
 setuptools>=70.0.0
+
+# ✅ Added recommended extras
+django-environ==0.11.2
+psycopg2-binary==2.9.9     # Only if you use PostgreSQL (safe to keep)
+boto3==1.35.6              # For AWS S3 / cloud storage (future ready)
+django-storages==1.14.4    # Required if you use boto3 with Django
+flower==2.0.1              # Celery monitoring dashboard

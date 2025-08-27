@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from sitevisitor import views_misc
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('jobs/', include('jobs.urls')),
     path('', include('sitevisitor.urls')),
     path('adminpanel/', include('adminpanel.urls')),
+    path("robots.txt", views_misc.robots_txt),
     path("payments/", include("payments.urls", namespace="payments")),
 
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
