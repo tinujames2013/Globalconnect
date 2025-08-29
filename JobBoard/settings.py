@@ -167,8 +167,8 @@ DEFAULT_FROM_EMAIL = 'Global Connect <admin@joweb.in>'
 
 
 # Razorpay test keys
-RAZORPAY_KEY_ID = "rzp_live_R97dkVXJos0oFB"
-RAZORPAY_KEY_SECRET = "sAWCvNGpuTW7dZUzlkhubK05"
+RAZORPAY_KEY_ID = "rzp_live_RB3xL9yczGogjB"
+RAZORPAY_KEY_SECRET = "h9oVtrUUykQ1fnvQ75VM3TS9"
 
 
 # (optional) add a helpful context var everywhere
