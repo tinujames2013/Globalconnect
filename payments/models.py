@@ -6,7 +6,7 @@ class Payment(models.Model):
     order_id = models.CharField(max_length=255, unique=True)
     payment_id = models.CharField(max_length=255, blank=True, null=True)
     signature = models.CharField(max_length=255, blank=True, null=True)
-    amount = models.IntegerField(default=50000)  # Razorpay paise → ₹500
+    amount = models.IntegerField(default=59900)  # Razorpay paise → ₹599
     currency = models.CharField(max_length=10, default="INR")
     status = models.CharField(max_length=30, default="created")  # created|paid|failed
     created_at = models.DateTimeField(auto_now_add=True)

@@ -21,7 +21,7 @@ def dashboard(request):
 @login_required
 def upgrade(request):
     """Step 1: Create Razorpay Order"""
-    amount = 50000  # ₹500 in paise
+    amount = 59900  # ₹599 in paise
     order = client.order.create(dict(
         amount=amount,
         currency="INR",
