@@ -1,9 +1,10 @@
 {% extends "payments/base.html" %}
-{% block title %}Plans | JobBoard{% endblock %}
+{% block title %}Plans | Joweb{% endblock %}
 {% block content %}
 <div class="py-5 text-center">
     <h2>Choose Your Plan</h2>
     <div class="row mt-4">
+        <!-- Free Plan -->
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -14,13 +15,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Premium Plan -->
         <div class="col-md-4">
             <div class="card shadow-sm border-primary">
                 <div class="card-body">
                     <h4 class="card-title text-primary">Premium</h4>
-                    <p>Unlimited job applications & full job details</p>
-                    <p class="fw-bold">₹500 / year</p>
-                    <a href="{% url 'payments:upgrade' %}" class="btn btn-primary">Upgrade</a>
+                    <p class="fw-bold">₹500 / ONLY</p>
+
+                    <!-- Razorpay Payment Button -->
+                    <a href="https://razorpay.me/@Globalconnect?amount=bd6mwPoVV2sRePhB8DGUcw%3D%3D" 
+                       class="btn btn-lg px-5 py-3 rounded-pill shadow-lg mt-4 d-inline-flex align-items-center"
+                       style="background: linear-gradient(90deg, #0d6efd, #0056b3); color:white; border:none;">
+                        💳 Pay Now
+                    </a>
+
                 </div>
             </div>
         </div>

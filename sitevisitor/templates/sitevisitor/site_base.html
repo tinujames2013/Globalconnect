@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Joweb | Home </title>
+  <title>Joweb | Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Plugin & Core CSS -->
@@ -13,7 +13,10 @@
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -24,8 +27,9 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
           <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand" href="{% url 'sitevisitor:home' %}">
-          <img src="{% static 'img/logo.png' %}" class="logo" alt="Joweb Logo">
+        <!-- ✅ Fixed Logo -->
+    
+          <img src="{% static 'img/logojoweb.png' %}" alt="Joweb Logo" style="height:70px; width:400;">
         </a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-menu">
@@ -42,7 +46,7 @@
   <!-- Navigation End -->
 
   <!-- Hero Section -->
-  <section class="main-banner" 
+  <section class="main-banner"
     style="background: #242c36 url('{% static "img/slider-01.jpg" %}') no-repeat center center; background-size: cover; height: 500px;">
     <div class="container text-center text-white py-5 d-flex align-items-center justify-content-center h-100">
       <div class="caption">
@@ -52,61 +56,63 @@
     </div>
   </section>
 
-  {% block content %}
-  {% endblock %}
-<!-- About Section -->
-<section id="about" class="about section py-5 bg-light">
-  <div class="container">
-    <div class="row gy-4 align-items-center">
+  {% block content %}{% endblock %}
 
-      <!-- Left Small Images -->
-      <div class="col-lg-6 d-flex flex-wrap justify-content-center gap-3">
-        <div class="stamp-img">
-          <img src="{% static 'img/applicant.jpg' %}" 
-               class="img-fluid rounded shadow" 
-               alt="Candidate at Joweb">
+  <!-- About Section -->
+  <section id="about" class="about section py-5 bg-light">
+    <div class="container">
+      <div class="row gy-4 align-items-center">
+        <!-- Left Small Images -->
+        <div class="col-lg-6 d-flex flex-wrap justify-content-center gap-3">
+          <div class="stamp-img">
+            <img src="{% static 'img/applicant.jpg' %}" class="img-fluid rounded shadow" alt="Candidate at Joweb">
+          </div>
+          <div class="stamp-img">
+            <img src="{% static 'img/Resume.jpg' %}" class="img-fluid rounded shadow" alt="Recruiter at Joweb">
+          </div>
         </div>
-        <div class="stamp-img">
-          <img src="{% static 'img/Resume.jpg' %}" 
-               class="img-fluid rounded shadow" 
-               alt="Recruiter at Joweb">
-        </div>
-      </div>
+        <!-- Right Content -->
+<div class="col-lg-6">
+  <h2 class="fw-bold">About <span class="text-primary">Joweb</span></h2>
+  
+  <p class="fst-italic text-muted">
+    <strong>Jobweb </strong> is a dynamic job consultancy committed to shaping careers and creating opportunities across India. 
+    We specialize in connecting talented candidates with the right jobs, while also guiding individuals who aspire to explore 
+    entrepreneurial and business ventures.
+  </p>
+  
+  <p>
+    Our mission is simple: to empower people with the right opportunities, skills, and guidance to achieve long-term growth. 
+    From professional resume building support to 24×7 counselor assistance, we ensure every candidate is equipped to succeed in 
+    today’s competitive world.
+  </p>
+  
+  <p>
+    At the same time, we work closely with recruiters to help them find the best talent from across India—building a strong bridge 
+    between employers and job seekers.
+  </p>
+  
+  <p>
+    With <strong>Jobweb</strong>, you don’t just find a job—you discover possibilities, unlock potential, and build a brighter future.
+  </p>
 
-      <!-- Right Content -->
-      <div class="col-lg-6">
-        <h2 class="fw-bold">About <span class="text-primary">Joweb</span></h2>
-        <p class="fst-italic text-muted">
-  At <strong>Joweb</strong>, we go beyond job matching — we build meaningful connections between skilled professionals and leading companies across the globe.  
-  With innovation, trust, and efficiency at our core, we make hiring and job searching smarter, faster, and more reliable.  
-</p>
+  <a href="#services" class="btn btn-primary btn-lg px-4 py-2 rounded-pill shadow-sm mt-3">
+    Explore Our Services
+  </a>
+</div>
 
-<p>
-  Whether you’re a job seeker looking for your next big opportunity or a recruiter seeking top-tier talent, our platform provides all the tools you need. 
-  Explore verified and up-to-date <strong>job listings</strong>, create standout <strong>professional resumes</strong>, track and manage <strong>applications</strong>, 
-  save favorite roles, and gain exclusive access to <strong>premium membership</strong> features designed to give you a competitive edge.  
-</p>
+  
+  </section>
 
-<p>
-  With <strong>Joweb </strong>, recruitment becomes more than a process — it’s a seamless journey toward growth, success, and the right opportunities. 
-</p>
-
-        <a href="#services" class="btn btn-primary">Explore Our Services</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Custom CSS -->
-<style>
-  .stamp-img img {
-    width: 500px;   /* control size */
-    height: 250px;  /* keep them uniform */
-    object-fit: cover; 
-    border-radius: 12px; /* softer look */
-  }
-</style>
+  <!-- Custom CSS -->
+  <style>
+    .stamp-img img {
+      width: 500px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  </style>
 
   <!-- ✅ SEO Meta -->
   <meta name="description" content="Find jobs and connect with recruiters on Joweb. Create resumes, apply and track applications.">
@@ -121,8 +127,8 @@
   <meta property="og:title" content="Joweb — Jobs & Careers">
   <meta property="og:description" content="Find jobs and connect with recruiters on Joweb. Create resumes, apply and track applications.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.joweb.in{{ request.get_full_path|default:'/' }}">
-  <meta property="og:image" content="https://www.joweb.in{% static 'img/og-image.png' %}">
+  <meta property="og:url" content="https://www.joweb.in{{ request.get_full_path|default:'/' }}"/>
+  <meta property="og:image" content="https://www.joweb.in{% static 'img/og-image.png' %}"/>
   <meta property="og:site_name" content="Joweb">
 
   <!-- ✅ Twitter Card -->
@@ -145,76 +151,63 @@
     }
   }
   </script>
-
-  <!-- Plugin & Core CSS -->
-  <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
-  <link rel="stylesheet" href="{% static 'css/common.css' %}">
-  <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
 <!-- Services Section -->
 <section id="services" class="services section py-5">
   <div class="container text-center mb-5">
     <h2 class="fw-bold">Our Services</h2>
-    <p class="text-muted">Tailored Features for Candidates & Recruiters</p>
+    <p class="text-muted">Jobweb – Empowering Careers & Businesses Across India</p>
   </div>
-
+  
   <div class="container">
     <div class="row gy-4">
-
-      <!-- Job Listings -->
-      <div class="col-md-4">
-        <div class="service-item p-4 border rounded shadow-sm text-center">
+      
+      <!-- Career & Business Opportunities -->
+      <div class="col-md-6">
+        <div class="service-item p-4 border rounded shadow-sm h-100 text-center">
           <i class="fa-solid fa-briefcase fa-2x mb-3 text-primary"></i>
-          <h5>Job Listings</h5>
-          <p>Browse thousands of active job opportunities posted by verified employers across industries.</p>
+          <h5 class="fw-bold">Career & Business Opportunities</h5>
+          <p>
+            Jobweb goes beyond traditional job consultancy by not only helping candidates 
+            secure jobs but also guiding them towards entrepreneurial and business prospects, 
+            enabling a wider scope for professional growth.
+          </p>
         </div>
       </div>
 
-      <!-- Applications -->
-      <div class="col-md-4">
-        <div class="service-item p-4 border rounded shadow-sm text-center">
+      <!-- Resume Building Support -->
+      <div class="col-md-6">
+        <div class="service-item p-4 border rounded shadow-sm h-100 text-center">
           <i class="fa-solid fa-file-alt fa-2x mb-3 text-success"></i>
-          <h5>Easy Applications</h5>
-          <p>Upload resumes, submit cover letters, and track the status of your job applications in real time.</p>
+          <h5 class="fw-bold">Resume Building Support</h5>
+          <p>
+            Our experts help candidates create and refine resumes with modern, professional 
+            templates — increasing their chances of selection and making applications smoother.
+          </p>
         </div>
       </div>
 
-      <!-- Resume Builder -->
-      <div class="col-md-4">
-        <div class="service-item p-4 border rounded shadow-sm text-center">
-          <i class="fa-solid fa-id-card fa-2x mb-3 text-info"></i>
-          <h5>Resume Builder</h5>
-          <p>Create professional resumes using multiple templates — modern, elegant, or corporate.</p>
+      <!-- 24x7 Counselor Assistance -->
+      <div class="col-md-6">
+        <div class="service-item p-4 border rounded shadow-sm h-100 text-center">
+          <i class="fa-solid fa-headset fa-2x mb-3 text-info"></i>
+          <h5 class="fw-bold">24×7 Counselor Assistance</h5>
+          <p>
+            With round-the-clock counselor support, candidates receive continuous guidance, 
+            career advice, and solutions to their queries — anytime, anywhere.
+          </p>
         </div>
       </div>
 
-      <!-- Premium Membership -->
-      <div class="col-md-4">
-        <div class="service-item p-4 border rounded shadow-sm text-center">
-          <i class="fa-solid fa-star fa-2x mb-3 text-warning"></i>
-          <h5>Premium Membership</h5>
-          <p>Unlock exclusive jobs, featured listings, and advanced recruiter tools with premium access.</p>
-        </div>
-      </div>
-
-      <!-- Saved Jobs & Filters -->
-      <div class="col-md-4">
-        <div class="service-item p-4 border rounded shadow-sm text-center">
-          <i class="fa-solid fa-bookmark fa-2x mb-3 text-danger"></i>
-          <h5>Saved Jobs & Filters</h5>
-          <p>Save interesting jobs and set up filters for instant access to opportunities that match your profile.</p>
-        </div>
-      </div>
-
-      <!-- Notifications -->
-      <div class="col-md-4">
-        <div class="service-item p-4 border rounded shadow-sm text-center">
-          <i class="fa-solid fa-bell fa-2x mb-3 text-secondary"></i>
-          <h5>Notifications</h5>
-          <p>Stay updated with real-time notifications for job matches, application updates, and recruiter messages.</p>
+      <!-- Recruiter Partnerships -->
+      <div class="col-md-6">
+        <div class="service-item p-4 border rounded shadow-sm h-100 text-center">
+          <i class="fa-solid fa-handshake fa-2x mb-3 text-warning"></i>
+          <h5 class="fw-bold">Recruiter Partnerships</h5>
+          <p>
+            Jobweb creates opportunities for recruiters by connecting them with the best 
+            and most qualified candidates across India, ensuring a win-win solution for 
+            both employers and job seekers.
+          </p>
         </div>
       </div>
 
@@ -222,13 +215,14 @@
   </div>
 </section>
 
+
   <!-- Footer -->
   <footer class="bg-dark text-white pt-5 pb-3">
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-4">
           <h4>Joweb</h4>
-          <p>Connecting job seekers and employers worldwide with a secure, scalable job portal platform.</p>
+          <p>Jobweb is more than a consultancy—it is a career and business growth partner, bridging the gap between job seekers, entrepreneurs, and recruiters nationwide.</p>
         </div>
         <div class="col-lg-2">
           <h5>Useful Links</h5>
@@ -250,8 +244,13 @@
         </div>
         <div class="col-lg-3">
           <h5>Contact Us</h5>
+
+           533 1 A CROSS ROAD
+           8th block Koramangala-560095
+           Bangalore,India
+
           <p>Email: admin@joweb.in</p>
-          <p>Phone: +91 999999999</p>
+          <p>Phone: +91 7012903614 </p>
         </div>
       </div>
       <div class="text-center mt-4">

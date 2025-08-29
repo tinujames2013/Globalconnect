@@ -1,7 +1,10 @@
 {% extends "payments/base.html" %}
 {% block content %}
 <div class="container py-5 text-center">
-  <h2>Upgrade to Premium (₹500/year)</h2>
+
+  <h2 class="fw-bold text-primary mb-3">
+    Upgrade to Premium – ₹500 (Lifetime Access)
+  </h2>
   <p>Unlock full job details and apply to Part-time & Full-time jobs.</p>
 
   <form action="{% url 'payments:verify' %}" method="POST">
@@ -12,18 +15,21 @@
       data-amount="{{ amount }}"
       data-currency="{{ currency }}"
       data-order_id="{{ order_id }}"
-      data-buttontext="Pay ₹500"
       data-name="JobBoard Premium"
-      data-description="Annual Premium Membership"
+      data-description="Lifetime Premium Membership"
       data-prefill.name="{{ user_name }}"
       data-prefill.email="{{ user_email }}"
-      data-theme.color="#3399cc">
+      data-theme.color="#007bff">
     </script>
-    <input type="hidden" name="hidden">
-  </form>
+     <a href="https://razorpay.me/@Globalconnect?amount=bd6mwPoVV2sRePhB8DGUcw%3D%3D" 
+   class="btn btn-lg px-5 py-3 rounded-pill shadow-lg mt-4 d-inline-flex align-items-center"
+   style="background: linear-gradient(90deg, #0d6efd, #0056b3); color:white; border:none;">
+    💳 Pay Now
+</a>
 
-  <p class="mt-3 text-muted">
-    You can pay via <strong>UPI (Google Pay, PhonePe, Paytm, BHIM)</strong>, Debit/Credit Card, Netbanking, or Wallet.
+
+  <p class="mt-3 text-muted" style="font-size: 0.9rem;">
+    Secure payment via <strong>UPI, Card, Netbanking, Wallet</strong>
   </p>
 </div>
 {% endblock %}

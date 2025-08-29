@@ -25,11 +25,16 @@ SECRET_KEY = 'django-insecure-4tor1ob%okkb62uhw*v+0s1w9tlya0%ge7aant&z479g^uh5e*
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["joweb.in", "www.joweb.in", "31.97.186.179", "127.0.0.1:8000", "127.0.0.1"]
+ALLOWED_HOSTS = ["joweb.in", "www.joweb.in", "31.97.186.179", "127.0.0.1", "localhost"]
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # for your global static folder
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")    # for collectstatic in production
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Application definition
 
@@ -132,11 +137,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
